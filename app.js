@@ -90,6 +90,9 @@ app.get("/buy",function(req,res){
 })
 
 
-app.listen(3000,function(){
+/*app.listen(3000,function(){
+	console.log("Running");
+});*/
+app.listen(process.env.PORT,process.env.IP,function(){
 	console.log("Running");
 });
