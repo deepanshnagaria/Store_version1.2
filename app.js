@@ -1,4 +1,4 @@
-var e= require("Express"),bodyparser=require("body-parser"),mongoose=require("mongoose"),methodOverride=require("method-override");
+var e= require("express"),bodyparser=require("body-parser"),mongoose=require("mongoose"),methodOverride=require("method-override");
 var app=e();
 Schema=mongoose.Schema;
 
