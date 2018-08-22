@@ -334,9 +334,9 @@ app.get("/buy/:category/:subcategory",function(req,res){
 })
 
 
-app.listen(3000,function(){
-	console.log("Running");
-});
-/*app.listen(process.env.PORT,process.env.IP,function(){
+/*app.listen(3000,function(){
 	console.log("Running");
 });*/
+app.listen(process.env.PORT,process.env.IP,function(){
+	console.log("Running");
+});
