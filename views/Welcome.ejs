@@ -41,7 +41,7 @@
 	        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="/buy">Buy</a>
+	        <a class="nav-link" href="/buy/filter">Buy</a>
 	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="/sell">Sell</a>
@@ -50,6 +50,23 @@
 	        <a class="nav-link" href="/contact">Contact us</a>
 	      </li>
 	    </ul>
+	    <ul class="navbar-nav ml-auto">
+	    	<% if(!currentUser){ %>
+	    		<!-- <li class="nav-item active">
+	      			<a class="nav-link" href="/register">Register</a>
+	    		</li> -->
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/login">Login</a>
+	    		</li>
+    		<% }else{%>
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/logout">Logout</a>
+	    		</li>
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/newProduct">New product</a>
+	    		</li>
+    		<% }%>
+    	</ul>
 	  </div>
 	</nav>
 
@@ -64,7 +81,7 @@
 	<!-- <div class="yo"><a href="/new_blog"><button>Buy</button></a></div>
 	<br>
 	<div class="yo"><a href="/blogs"><button>Sell</button></a></div> -->
-	<a href="/buy"><div class="yo"><button type="button" class="btn btn-dark ">Buy best stuff</button></div></a>
+	<a href="/buy/filter"><div class="yo"><button type="button" class="btn btn-dark ">Buy best stuff</button></div></a>
 	<br>
 	<a href="/sell"><div class="yo"><button type="button" class="btn btn-dark">Sell your product</button></div></a>
 </body>

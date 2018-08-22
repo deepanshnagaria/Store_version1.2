@@ -43,7 +43,7 @@
 	        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item active">
-	        <a class="nav-link" href="/buy">Buy</a>
+	        <a class="nav-link" href="/buy/filter">Buy</a>
 	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="/sell">Sell</a>
@@ -52,18 +52,37 @@
 	        <a class="nav-link" href="/contact">Contact us</a>
 	      </li>
 	    </ul>
+	    <ul class="navbar-nav ml-auto">
+	    	<% if(!currentUser){ %>
+	    		<!-- <li class="nav-item active">
+	      			<a class="nav-link" href="/register">Register</a>
+	    		</li> -->
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/login">Login</a>
+	    		</li>
+    		<% }else{%>
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/logout">Logout</a>
+	    		</li>
+	    		<li class="nav-item active">
+	      			<a class="nav-link" href="/newProduct">New product</a>
+	    		</li>
+    		<% }%>
+    	</ul>
 	  </div>
 	</nav>
 
 	<div class="center">
 		<h1>PRODUCTS</h1>
 		<% for(var i=0;i<products.length;i++){ %>
+		<% if(products[i].category==category && products[i].subcategory==subcategory){ %>
 		<br>
 		<div>
 			<figure class="figure">
 				<h3 ><%= products[i].category %></h3>
 				<h4><%= products[i].subcategory %></h4>
-				<div>Price: <%= products[i].cost %>$</div>
+				<div>Name: <%= products[i].name %>$</div>
+				<div>Price: <%= products[i].price %>$</div>
 		  		<img align="middle" src="<%= products[i].image %>" class=" figure-img img-fluid rounded img-thumbnail" alt="A generic square placeholder image with rounded corners in a figure.">
 		  		<br>
 		  		<br>
@@ -76,10 +95,12 @@
 				    </thead>
 				    <tbody>
 				      <% for(var j=0;j<products[i].features.length;j++){ %>
+				      <% if(products[i].description[j]!=''){ %>
 				      <tr>
-				        <td><%= products[i].features[j].feature	 %></td>
-				        <td><%= products[i].features[j].description	%></td>
+				        <td><%= products[i].features[j] %></td>
+				        <td><%= products[i].description[j]	%></td>
 				      </tr>
+				      <% } %>
 				  	  <% } %>
 				    </tbody>
 				  </table>
@@ -87,5 +108,6 @@
 				  <a href="/coming_soon"><button class="btn btn-dark">Buy</button></a>
 			</figure>
 		</div>
+		<%}%>
 		<%}%>
 	</div>
