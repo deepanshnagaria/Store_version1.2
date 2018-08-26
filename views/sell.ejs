@@ -88,7 +88,7 @@
 			    <% for(var i=0;i<categories.length;i++){ %>
 			    <% for(var j=0;j<categories[i].subcategories.length;j++){%>
 			    
-			    <option  class="subcategorySelected <%=categories[i].name%>">
+			    <option  class="subcategorySelected <%=categories[i].name.split(' ')[0]%>">
 			    	<%=categories[i].subcategories[j].name%>
 			    </option>
 				
@@ -123,8 +123,14 @@
 					    <label for="description"><%=categories[i].subcategories[j].subcategoryFeatures[k]%></label>
 					    <input type="text" class="form-control" id="title" placeholder="Description" name="description[]" >
 				    </div> -->
-				    <label for="description[]"  class="ffg <%=categories[i].subcategories[j].name%>"><%=categories[i].subcategories[j].subcategoryFeatures[k]%></label>
-			    	<input type="text" class="ffg form-control <%=categories[i].subcategories[j].name%>" aria-describedby="emailHelp" placeholder="description" name="description[]">	
+				    <label for="description[]"  class="ffg <%=categories[i].subcategories[j].name.split(' ')[0] %>"><%=categories[i].subcategories[j].subcategoryFeatures[k]%></label>
+				    <select class="form-control <%=categories[i].subcategories[j].name.split(' ')[0] %> ffg" id="fattu" name="description[]">
+				    	<option></option>
+			    		<%for(var p=0;p<categories[i].subcategories[j].subcategoryDescription[k].length;p++){%>
+			    			<option><%=categories[i].subcategories[j].subcategoryDescription[k][p]%></option>
+			    		<%}%>
+			    	</select>
+			    	<!-- <input type="text" class="ffg form-control <%=categories[i].subcategories[j].name%>" aria-describedby="emailHelp" placeholder="description" name="description[]"> -->	
 			    	<input type="text" class="blank" aria-describedby="emailHelp" value="<%=categories[i].subcategories[j].subcategoryFeatures[k]%>" name="feature[]">
 				    <!-- <input type="text" name="aaaa" class="blank" value="<%=categories[i].subcategories[j].subcategoryFeatures%>"> -->
 				    <%}%>

@@ -111,7 +111,7 @@
 			    <% for(var i=0;i<categories.length;i++){ %>
 			    <% for(var j=0;j<categories[i].subcategories.length;j++){%>
 			    
-			    <option  class="subcategorySelected <%=categories[i].name%>">
+			    <option  class="subcategorySelected <%=categories[i].name.split(' ')[0]%>">
 			    	<%=categories[i].subcategories[j].name%>
 			    </option>
 				
@@ -131,11 +131,18 @@
 			    <label for="img" >Image(URL)</label>
 			    <input type="text" class="form-control" id="img" aria-describedby="emailHelp" placeholder="Image" name="image">
 			  </div> -->
-			  <div class="form-group row">
+			  <div class="form-group">
+			  	<div class="row">
 			  	<div class="col">
 				    <label for="feature">Feature</label>
 				    <input type="text" class="form-control" id="title" placeholder="feature" name="feature[]" >
 			    </div>
+			    <div class="col">
+			    	<label for="answer1">Description</label>
+			    	<input type="text" class="form-control" id="answer1" placeholder="description" name="answer[]" >
+				    <p>Different options should be seperated by commas. Eg:colour(feature) => black,white(description)</p>
+				</div>
+				</div>
 			    <!-- <div class="col">
 				    <label for="description">Discription</label>
 				    <input type="text" class="form-control" id="title" placeholder="Description" name="description[]" >
@@ -148,7 +155,8 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="/js/newProduct.js"></script>
-	<script type="text/javascript" src="/js/sell.js"></script>
+	<script type="text/javascript" src="/js/sell1.js"></script>
+	<!-- <script type="text/javascript" src="/js/sell.js"></script> -->
 </body>
 </html>
 

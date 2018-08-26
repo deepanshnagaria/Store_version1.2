@@ -54,7 +54,8 @@ var FinalProduct=mongoose.model("FinalProduct",finalProductSchrma);
 var subcategorySchema=new mongoose.Schema({
 	name:String,
 	//names:[nameSchema],
-	subcategoryFeatures:[{type:String}]
+	subcategoryFeatures:[{type:String}],
+	subcategoryDescription:[{type:Array}]
 })
 var Subcategory=mongoose.model("Subcategory",subcategorySchema);
 
@@ -148,7 +149,7 @@ Name.create({
 })*/
 /*var Categories=mongoose.model("Categories",categoriesSchema);*/
 
-app.get("/newProduct",isLoggedIn,function(req,res){
+app.get("/newProducts",isLoggedIn,function(req,res){
 	Category.find({},function(err,fg){
 		if(err)
 		{
@@ -159,7 +160,15 @@ app.get("/newProduct",isLoggedIn,function(req,res){
 		res.render("newProduct",{categories:fg});
 	})
 })
+app.get("/newProduct",isLoggedIn,function(req,res){
+	res.render("question");
+})
 
+app.post("/newCategory",function(req,res){
+	Category.create({name:req.body.name},function(err,category){
+		res.redirect("/newProducts");
+	})
+})
 app.post("/newProduct",function(req,res){
 	if(req.body.choice=="1")
 	{
@@ -170,11 +179,14 @@ app.post("/newProduct",function(req,res){
 				{
 					if(subcat.subcategories[i].name==req.body.subcategory){
 						//console.log("found");
-						for(var j=0;j<req.body.feature.length;j++)
+						for(var j=0;j<req.body.feature.length;j++){
 							subcat.subcategories[i].subcategoryFeatures.push(req.body.feature[j]);
+							subcat.subcategories[i].subcategoryDescription.push(req.body.answer[j].split(","));
+						}
 						//console.log(subcat.subcategories[i].subcategoryFeatures);
 					}
 				}
+				console.log(req.body.answer);
 			subcat.save(function(err,aa){
 				/*console.log(aa);*/
 			})
@@ -185,10 +197,18 @@ app.post("/newProduct",function(req,res){
 		})
 	}
 	else{
+		var temp=[];
+		for(var j=0;j<req.body.feature.length;j++){
+			/*console.log(req.body.answer[j]);
+			console.log(req.body);*/
+			temp.push(req.body.answer[j].split(","));
+		}
 		var aa=new Subcategory({
 			name:req.body.subcategoryName,
-			subcategoryFeatures:req.body.feature
+			subcategoryFeatures:req.body.feature,
+			subcategoryDescription:temp
 		})
+		/*console.log(req.body.answer);*/
 		aa.save(function(req,res){
 			/*console.log(aa);*/
 		})
@@ -249,6 +269,7 @@ app.get("/sell",function(req,res){
 
 
 app.post("/sell",function(req,res){
+	console.log(req.body);
 	FinalProduct.create({
 		name:req.body.name,
 		category:req.body.category,
@@ -333,10 +354,27 @@ app.get("/buy/:category/:subcategory",function(req,res){
 	})
 })
 
+/*app.get("/edit",function(req,res){
+	Category.find({},function(err,categories){
+		
+		res.render("edit",{categories:categories});
+	})
+})
+app.post("/editCategory",function(req,res){
+	Category.findByIdAndUpdate(req.body.category,{name:req.body.newcategory},function(err,b){
+		res.redirect("/sell");
+	})
+})
+app.post("/editSubCategory",function(req,res){
+	Subcategory.findByIdAndUpdate(req.body.subcategory,{name:req.body.newcategory},function(err,b){
+		res.redirect("/sell");
+	})
+})*/
 
-/*app.listen(3000,function(){
-	console.log("Running");
-});*/
-app.listen(process.env.PORT,process.env.IP,function(){
+
+app.listen(3000,function(){
 	console.log("Running");
 });
+/*app.listen(process.env.PORT,process.env.IP,function(){
+	console.log("Running");
+});*/

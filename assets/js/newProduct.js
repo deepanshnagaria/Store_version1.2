@@ -1,6 +1,6 @@
 $("#categorySelected").on('change',function(){
 	$(".subcategorySelected").hide()
-	$("."+this.value).show()
+	$("."+this.value.split(" ")[0]).show()
 })
 
 $("#choosen").on('change',function(){
@@ -10,6 +10,5 @@ $("#choosen").on('change',function(){
 
 $("#fattu").on('change',function(){
 	$(".ffg").hide()
-	$("."+this.value).show()
-	$("."+this.value).show()
+	$("."+this.value.split(" ")[0]).show()
 })
