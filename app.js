@@ -55,7 +55,8 @@ var subcategorySchema=new mongoose.Schema({
 	name:String,
 	//names:[nameSchema],
 	subcategoryFeatures:[{type:String}],
-	subcategoryDescription:[{type:Array}]
+	subcategoryDescription:[{type:Array}],
+	subcategoryDisplay:String
 })
 var Subcategory=mongoose.model("Subcategory",subcategorySchema);
 
@@ -182,11 +183,12 @@ app.post("/newProduct",function(req,res){
 						for(var j=0;j<req.body.feature.length;j++){
 							subcat.subcategories[i].subcategoryFeatures.push(req.body.feature[j]);
 							subcat.subcategories[i].subcategoryDescription.push(req.body.answer[j].split(","));
+						subcat.subcategoryDisplay=req.body.subcategoryDisplay;
 						}
 						//console.log(subcat.subcategories[i].subcategoryFeatures);
 					}
 				}
-				console.log(req.body.answer);
+				/*console.log(req.body.answer);*/
 			subcat.save(function(err,aa){
 				/*console.log(aa);*/
 			})
@@ -206,7 +208,8 @@ app.post("/newProduct",function(req,res){
 		var aa=new Subcategory({
 			name:req.body.subcategoryName,
 			subcategoryFeatures:req.body.feature,
-			subcategoryDescription:temp
+			subcategoryDescription:temp,
+			subcategoryDisplay:req.body.subcategoryDisplay
 		})
 		/*console.log(req.body.answer);*/
 		aa.save(function(req,res){
@@ -372,9 +375,9 @@ app.post("/editSubCategory",function(req,res){
 })*/
 
 
-/*app.listen(3000,function(){
-	console.log("Running");
-});*/
-app.listen(process.env.PORT,process.env.IP,function(){
+app.listen(3000,function(){
 	console.log("Running");
 });
+/*app.listen(process.env.PORT,process.env.IP,function(){
+	console.log("Running");
+});*/

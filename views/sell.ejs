@@ -124,12 +124,40 @@
 					    <input type="text" class="form-control" id="title" placeholder="Description" name="description[]" >
 				    </div> -->
 				    <label for="description[]"  class="ffg <%=categories[i].subcategories[j].name.split(' ')[0] %>"><%=categories[i].subcategories[j].subcategoryFeatures[k]%></label>
+
+
+				    <%if(categories[i].subcategories[j].subcategoryDisplay=="Dropdown"){%>
 				    <select class="form-control <%=categories[i].subcategories[j].name.split(' ')[0] %> ffg" id="fattu" name="description[]">
 				    	<option></option>
 			    		<%for(var p=0;p<categories[i].subcategories[j].subcategoryDescription[k].length;p++){%>
 			    			<option><%=categories[i].subcategories[j].subcategoryDescription[k][p]%></option>
 			    		<%}%>
 			    	</select>
+			    	
+
+			    	<%}else if(categories[i].subcategories[j].subcategoryDisplay=="Checkbox"){%>
+			    	<div id="fattu">
+			    		<%for(var p=0;p<categories[i].subcategories[j].subcategoryDescription[k].length;p++){%>
+			    			<label class="checkbox-inline <%=categories[i].subcategories[j].name.split(' ')[0] %> ffg" name="description[]"><input type="checkbox" value=""><%=categories[i].subcategories[j].subcategoryDescription[k][p]%></label>
+						<%}%>
+					</div>
+					
+
+					<%}else if(categories[i].subcategories[j].subcategoryDisplay=="Radio buttons"){%>
+					<div id="fattu">
+			    		<%for(var p=0;p<categories[i].subcategories[j].subcategoryDescription[k].length;p++){%>
+			    			<label class="radio-inline <%=categories[i].subcategories[j].name.split(' ')[0] %> ffg" name="description[]"><input type="radio" value=""><%=categories[i].subcategories[j].subcategoryDescription[k][p]%></label>
+						<%}%>
+					</div>
+					
+					<%}else{%>
+					<select class="form-control <%=categories[i].subcategories[j].name.split(' ')[0] %> ffg" id="fattu" name="description[]">
+				    	<option></option>
+			    		<%for(var p=0;p<categories[i].subcategories[j].subcategoryDescription[k].length;p++){%>
+			    			<option><%=categories[i].subcategories[j].subcategoryDescription[k][p]%></option>
+			    		<%}%>
+			    	</select>
+			    	<%}%>
 			    	<!-- <input type="text" class="ffg form-control <%=categories[i].subcategories[j].name%>" aria-describedby="emailHelp" placeholder="description" name="description[]"> -->	
 			    	<input type="text" class="blank" aria-describedby="emailHelp" value="<%=categories[i].subcategories[j].subcategoryFeatures[k]%>" name="feature[]">
 				    <!-- <input type="text" name="aaaa" class="blank" value="<%=categories[i].subcategories[j].subcategoryFeatures%>"> -->
